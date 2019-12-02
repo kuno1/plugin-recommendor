@@ -1,0 +1,77 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2019-12-02 19:31+0900\n"
+"PO-Revision-Date: 2019-12-02 19:30+0900\n"
+"Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en_US\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: vendor\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: dist\n"
+
+#: src/Kunoichi/PluginRecommender/Plugin.php:65
+msgid "Invalid namespace"
+msgstr ""
+
+#: src/Kunoichi/PluginRecommender/RecommendationsList.php:28
+msgid "Recommendations"
+msgstr ""
+
+#: src/Kunoichi/PluginRecommender/RecommendationsList.php:28
+msgid "Recommended Plugins"
+msgstr ""
+
+#: src/Kunoichi/PluginRecommender/RecommendationsList.php:111
+msgid "Specified plugin not found."
+msgstr ""
+
+#: src/Kunoichi/PluginRecommender/Services/Wp.php:28
+msgid "Invalid result format."
+msgstr ""
+
+#: assets/js/plugin-list.js:58
+msgid "No reason provided."
+msgstr ""
+
+#: assets/js/plugin-list.js:73
+msgid "Required"
+msgstr ""
+
+#: assets/js/plugin-list.js:76
+msgid "Integrated"
+msgstr ""
+
+#: assets/js/plugin-list.js:79
+msgid "Recommended"
+msgstr ""
+
+#: assets/js/plugin-list.js:98
+msgid "Activated"
+msgstr ""
+
+#: assets/js/plugin-list.js:98
+msgid "Install"
+msgstr ""
+
+#: assets/js/plugin-list.js:99
+msgid "Detail"
+msgstr ""
+
+#: assets/js/plugin-list.js:121
+#, python-format
+msgid "Recommended Plugins: %d"
+msgstr ""
+
+#: assets/js/plugin-list.js:130
+msgid "No plugin is recommended."
+msgstr ""

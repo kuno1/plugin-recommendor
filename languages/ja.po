@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Plugins Recommender\n"
+"POT-Creation-Date: 2019-12-02 19:31+0900\n"
+"PO-Revision-Date: 2019-12-02 19:37+0900\n"
+"Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
+"Language-Team: Kunoichi INC\n"
+"Language: ja_JP\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/Kunoichi/PluginRecommender/Plugin.php:65
+msgid "Invalid namespace"
+msgstr "無効な名前空間"
+
+#: src/Kunoichi/PluginRecommender/RecommendationsList.php:28
+msgid "Recommendations"
+msgstr "おすすめ"
+
+#: src/Kunoichi/PluginRecommender/RecommendationsList.php:28
+msgid "Recommended Plugins"
+msgstr "おすすめプラグイン"
+
+#: src/Kunoichi/PluginRecommender/RecommendationsList.php:111
+msgid "Specified plugin not found."
+msgstr "指定されたプラグインは存在しません。"
+
+#: src/Kunoichi/PluginRecommender/Services/Wp.php:28
+msgid "Invalid result format."
+msgstr "無効な結果が返ってきました。"
+
+#: assets/js/plugin-list.js:58
+msgid "No reason provided."
+msgstr "理由が記載されていません。"
+
+#: assets/js/plugin-list.js:73
+msgid "Required"
+msgstr "必須"
+
+#: assets/js/plugin-list.js:76
+msgid "Integrated"
+msgstr "統合済み"
+
+#: assets/js/plugin-list.js:79
+msgid "Recommended"
+msgstr "おすすめ"
+
+#: assets/js/plugin-list.js:98
+msgid "Activated"
+msgstr "有効化済み"
+
+#: assets/js/plugin-list.js:98
+msgid "Install"
+msgstr "インストール"
+
+#: assets/js/plugin-list.js:99
+msgid "Detail"
+msgstr "詳細"
+
+#: assets/js/plugin-list.js:121
+#, python-format
+msgid "Recommended Plugins: %d"
+msgstr "おすすめプラグイン数: %d"
+
+#: assets/js/plugin-list.js:130
+msgid "No plugin is recommended."
+msgstr "プラグインはおすすめされていません。"

@@ -28,11 +28,11 @@ class PluginRecommender {
 	private $plugins = [];
 
 	/**
-	 *
+	 * Constructor.
 	 */
 	private function __construct() {
 		// Load theme text domain.
-
+		load_textdomain( 'pr', $this->dir . sprintf( '/languages/%s.mo', get_locale() ) );
 		// Add plugin Recommendation list.
 		RecommendationsList::get_instance();
 	}

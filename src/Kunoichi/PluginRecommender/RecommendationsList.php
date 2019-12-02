@@ -25,7 +25,7 @@ class RecommendationsList extends Singleton {
 	 * Add admin menu.
 	 */
 	public function admin_menu() {
-		add_plugins_page( __( 'Recommendations', 'plugins-recommender' ), __( 'Recommended Plugins', 'plugins-recommender' ), 'install_plugins', 'plugins-recommender', [ $this, 'render_screen' ] );
+		add_plugins_page( __( 'Recommendations', 'pr' ), __( 'Recommended Plugins', 'pr' ), 'install_plugins', 'plugins-recommender', [ $this, 'render_screen' ] );
 	}
 
 	/**
@@ -50,6 +50,7 @@ class RecommendationsList extends Singleton {
 					return $plugin->name;
 				}, $plugins ),
 			] );
+			wp_set_script_translations( 'plugins-recommender-list', 'pr', $this->recommender->dir . '/languages' );
 		}
 	}
 
@@ -61,7 +62,7 @@ class RecommendationsList extends Singleton {
 		<div class="wrap">
 			<h1>
 				<span class="dashicons dashicons-plugins-checked"></span>
-				<?php esc_html_e( 'Recommended Plugins', 'plugins-recommender' ) ?>
+				<?php esc_html_e( 'Recommended Plugins', 'pr' ) ?>
 			</h1>
 			<div id="plugin-recommender-list">
 			</div>
@@ -77,7 +78,6 @@ class RecommendationsList extends Singleton {
 			[
 				'methods' => 'GET',
 				'permission_callback' => function() {
-		            return true;
 					return current_user_can( 'install_plugins' );
 				},
 				'args' => [
