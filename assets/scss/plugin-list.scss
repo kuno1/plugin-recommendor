@@ -1,0 +1,118 @@
+@keyframes loadingGradient {
+  0%{
+    background-position:0 99%;
+  }
+  50%{
+    background-position:100% 2%;
+  }
+  100%{
+    background-position:0 99%;
+  }
+}
+
+%gradient{
+  background: linear-gradient(145deg, #c9d1cf, #7b7d7d);
+  background-size: 400% 400%;
+  animation: loadingGradient 3s ease infinite;
+}
+
+.plugins-recommender-list{
+  &__error{
+    padding: 1em;
+    font-size: 1.4em;
+    margin-top: 2em;
+  }
+
+  &__grid{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item{
+    flex: 0 0 33%;
+    box-sizing: border-box;
+    @media only screen and ( max-width: 768px ) {
+      flex: 0 0 50%;
+    }
+    padding: 15px;
+  }
+
+  &__inner{
+    background: #fff;
+    padding: 15px;
+    &:after{
+      clear: both;
+      content: "";
+      display: block;
+      height: 0;
+    }
+  }
+
+  &__placeholder{
+    @extend %gradient;
+  }
+
+  &__title,
+  &__subtitle,
+  &__desc,
+  &__note {
+    .loading & {
+      @extend %gradient;
+    }
+  }
+  $img-width: 64px;
+  &__placeholder,
+  &__img{
+    width: $img-width;
+    height: $img-width;
+    float: left;
+  }
+  &__body{
+    margin-left: $img-width + 20;
+  }
+  &__title{
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: bold;
+    .loading & {
+      min-height: 1em;
+    }
+  }
+  &__subtitle{
+    margin: 5px 0 10px;
+    border-top: 1px solid #ddd;
+    padding-top: 5px;
+    &--required{
+      color: red;
+    }
+    &--integrated{
+      color: green;
+    }
+  }
+
+  &__subtitle,
+  &__desc,
+  &__note{
+    .loading & {
+      min-height: 2.8em;
+    }
+  }
+
+  &__desc{
+    line-height: 1.4;
+    color: #666;
+  }
+
+  &__note{
+    color: black;
+    &--empty{
+      color: lightgrey;
+    }
+  }
+
+  &__actions {
+    a{
+      margin-right: 10px !important;
+    }
+  }
+}

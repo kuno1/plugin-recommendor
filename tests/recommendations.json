@@ -1,0 +1,15 @@
+[
+  {
+    "slug": "jetpack",
+    "source": "wp",
+    "description": "Because automattic recommends this plugin."
+  },
+  {
+    "slug": "contact-form-7",
+    "priority": 100
+  },
+  {
+    "slug": "woocommerce",
+    "priority": 50
+  }
+]
