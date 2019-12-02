@@ -2,8 +2,10 @@
 
 set -e
 
-# Remove unwanted files.
+# Rebuild libraries.
+composer install --no-dev --prefer-dist
 
+# Remove unwanted files.
 rm -rf node_modules
 rm -rf package-lock.json
 rm -rf tests

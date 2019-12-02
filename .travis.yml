@@ -5,39 +5,39 @@ notifications:
     on_failure: change
 branches:
   only:
-    - master
-    - "/^v?[0-9\\.]+$/"
+  - master
+  - "/^v?[0-9\\.]+$/"
 php:
-  - '5.6'
-  - '7.0'
-  - '7.1'
-  - '7.2'
-  - '7.3'
+- '5.6'
+- '7.0'
+- '7.1'
+- '7.2'
+- '7.3'
 services:
-  - mysql
+- mysql
 before_script:
-  - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer install
-  - curl -s -o $HOME/.nvm/nvm.sh https://raw.githubusercontent.com/creationix/nvm/v0.33.8/nvm.sh
-  - source $HOME/.nvm/nvm.sh
-  - nvm install v10.13.0
-  - node --version
-  - npm install
-  - npm run extract
-  - bash bin/install-wp-tests.sh wordpress_test root '' 127.0.0.1
+- export PATH="$HOME/.composer/vendor/bin:$PATH"
+- composer install
+- curl -s -o $HOME/.nvm/nvm.sh https://raw.githubusercontent.com/creationix/nvm/v0.33.8/nvm.sh
+- source $HOME/.nvm/nvm.sh
+- nvm install v10.13.0
+- node --version
+- npm install
+- npm run build
+- bash bin/install-wp-tests.sh wordpress_test root '' 127.0.0.1
 script:
-  - composer test
+- composer test
 before_deploy:
-  - echo 'Making deploy packages...'
-  - bash ./bin/cleanup.sh
-  - zip -r bootstrapress.zip ./
+- echo 'Making deploy packages...'
+- bash ./bin/cleanup.sh
+- zip -r plugin-recommender.zip ./
 deploy:
   provider: releases
   skip_cleanup: true
+  file: plugin-recommender.zip
   api_key:
-    secure: cKUc0vq/eI+u4zu8GT9KE/AUyKq0koyByAoU+S8nA9kLHIMedu/pFNnp1/kGDU1L/mTJEyZr5GGW5NJTczSFEbqaVkZL5E62mtHUG1MO/w4OeBAhuVLPbpesABp1erKIo9uvU4ABDbJiFGWBbQI3m5BIwzPxKRuLY9E6PvmC8DjpnKZgCZqf7Ua1MPYMluagAXOxp+Is8rfAX5Y4sqQatL/b/ZxEzjU9yCSryf3jQDN43sFC7y1SgdKSLnwVfGC0V+goXBQLH61ZLUtkD4PqhfAs48KYJtZLjzapKL9kVS5gIWGJ2UOyo+IIOaQqTkgXyFSboqdAYx7pJycVyqLoLqaFQcmsTbDnRGL0+Vox7uHjhpzhBIayppeX5ISmoHaGQt0n0aihp/wuS6SMzr94aQTwDwvS57fYyw9M0NgrjfFWlfvUdyTXnM3Yxpn3/1iCA/mPafFCMS2BDP2gZ4fphk1pZfmYC5ayDrwPyCwZQS4huOKTPQ67096/xxVhFe5PQ5fp11rcZJXf9oqLjg2qcsJgP8l0GUEryCu07usdU9vo25QGB0/JXv3CJtReyAIFLiQubkr1w9f7UA445GmW2BicVnwckuD69YFYwUASZYgOV3ZW9O+t1ijnPxblATSsJBahRYhgG+zmwGg68XZ4/spDN4WN6DluJBz5ENhKlaw=
-  file: bootstrapress.zip
+    secure: ZDYY4BOZkf723LKRmviadGGqfyn6D+LzRp7uv78NUyMRrNm9tbXygtxY4RY8wIYWm2W3G85Q09HuTWm7xWIx3rRnl9k4T1k9Uxy5b1VZFRIvpHx4aC0ORK0N1xLKcr9dRS+F0eRtkerZaVXC4kSox4INOlchaC4Z4yalIveAhG0ec4RkrZc8HQCRcjIY36V2AhSFvjDzcUaB2+QOYQ/V8ie1fM1A0sSHXyB20MTGf0QutyhbCwbreKZXbJOUQd1z194kD0y7MqFDwLlUrS7Xw3y+JCITX6U8rbEGJYrQNi68Lsig048jnwjYeAZ11spK3tRyx0wwCk4deO9l5BICYG++NUcPK96bxXsx4y7L1ir5NNMJxUggoBkXvdQwjCRRV0D6rMMJnIZnn3yhGBtq104WofMflmuBzZEzrPC3tFqvwJTJsd5ke5bMvW5NNZMA3qnIMjTgUq5+3QGDBZpJ/gZ+dpx1TD31rWuTtcUrVlmkXo+cA6fazsplzeNRFCoEjn+UOV+N1twDZcMqSMjnAOwee0jXcVPdOY1sOLPaZmRQg0bOackxxZHvsF2Jp1z7THAPDobtuFhJSYpf9E1vvDVjqhPTKqL9lMRLeMj+18zVSRwVJSAMrvRKnv+q1sKyD92UiMvYLHOyuRVRDCD2Z5l5hkQhxafD+QYn0IRruuE=
   on:
-    repo: kuno1/bootstrapress
+    repo: kuno1/plugin-recommendor
     tags: true
-    php: '7.0'
+    php: "7.0"
