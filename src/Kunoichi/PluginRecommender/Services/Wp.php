@@ -18,8 +18,12 @@ class Wp extends PluginInformation {
 	 * @return array|\WP_Error
 	 */
 	protected function get_api_info() {
+		global $wp_version;
 		$url = sprintf( 'https://api.wordpress.org/plugins/info/1.0/%s.json', $this->slug );
-		$info = wp_remote_get( $url );
+		$info = wp_remote_get( $url, [
+			'timeout'    => 15,
+			'user-agent' => 'WordPress/' . $wp_version . '; ' . home_url( '/' ),
+		] );
 		if ( is_wp_error( $info ) ) {
 			return $info;
 		}
