@@ -3,6 +3,7 @@
 namespace Kunoichi\PluginRecommender;
 
 
+use Kunoichi\PluginRecommender;
 use Kunoichi\PluginRecommender\Pattern\Singleton;
 
 /**
@@ -39,12 +40,12 @@ class RecommendationsList extends Singleton {
 			$this->enqueue_style( 'plugins-recommender-list', 'dist/css/plugin-list.css', [ 'dashicons' ] );
 			$plugins = $this->recommender->all();
 			usort( $plugins, function( $a, $b ) {
-			    if ( $a->priority == $b->priority ) {
-			        return 0;
-                } else {
-			        return $a->priroty > $b->priority ? -1 : 1;
-                }
-            } );
+				if ( $a->priority === $b->priority ) {
+					return 0;
+				} else {
+					return ( $a->priority > $b->priority ) ? -1 : 1;
+				}
+			} );
 			wp_localize_script( 'plugins-recommender-list', 'RecommenderList', [
 				'plugins' => array_map( function( Plugin $plugin ) {
 					return $plugin->name;
@@ -62,8 +63,15 @@ class RecommendationsList extends Singleton {
 		<div class="wrap">
 			<h1>
 				<span class="dashicons dashicons-plugins-checked"></span>
-				<?php esc_html_e( 'Recommended Plugins', 'pr' ) ?>
+				<?php echo esc_html( PluginRecommender::get_title() ); ?>
 			</h1>
+			<?php
+			$description = PluginRecommender::get_description();
+			if ( $description ) {
+				printf( '<p class="description">%s</p>', esc_html( $description ) );
+			}
+			?>
+			<hr />
 			<div id="plugin-recommender-list">
 			</div>
 		</div>
@@ -76,42 +84,42 @@ class RecommendationsList extends Singleton {
 	public function rest_api_init() {
 		register_rest_route( 'kunoichi/v1', 'plugins/recommendation/(?P<namespace>[^/]+)/(?P<slug>.+)', [
 			[
-				'methods' => 'GET',
+				'methods'             => 'GET',
 				'permission_callback' => function() {
 					return current_user_can( 'install_plugins' );
 				},
-				'args' => [
+				'args'                => [
 					'namespace' => [
-						'required' => true,
-                        'validate_callback' => function( $var ) {
-		                    return ! empty( $var );
-                        },
+						'required'          => true,
+						'validate_callback' => function( $var ) {
+							return ! empty( $var );
+						},
 					],
-					'slug' => [
-						'required' => true,
-                        'validate_callback' => function( $var ) {
-                            return ! empty( $var );
-                        },
+					'slug'      => [
+						'required'          => true,
+						'validate_callback' => function( $var ) {
+							return ! empty( $var );
+						},
 					],
 				],
-				'callback' => function( \WP_REST_Request $request ) {
-		            $slug      = $request->get_param( 'slug' );
-		            $full_slug = sprintf( '%s/%s', $request->get_param( 'namespace' ), $slug );
-					$return = [];
+				'callback'            => function( \WP_REST_Request $request ) {
+					$slug      = $request->get_param( 'slug' );
+					$full_slug = sprintf( '%s/%s', $request->get_param( 'namespace' ), $slug );
+					$return    = [];
 					foreach ( $this->recommender->all() as $plugin ) {
-					    if ( $full_slug === $plugin->name ) {
-					        $result = $plugin->retrieve_information();
-					        return is_wp_error( $result ) ? $result : new \WP_REST_Response( array_merge( $result, [
-                                'notes'     => $plugin->description,
-                                'activated' => $plugin->is_active(),
-                                'priority'  => $plugin->priority,
-                            ] ) );
-                        }
+						if ( $full_slug === $plugin->name ) {
+							$result = $plugin->retrieve_information();
+							return is_wp_error( $result ) ? $result : new \WP_REST_Response( array_merge( $result, [
+								'notes'     => $plugin->description,
+								'activated' => $plugin->is_active(),
+								'priority'  => $plugin->priority,
+							] ) );
+						}
 					}
 					return new \WP_Error( 'not_found', __( 'Specified plugin not found.', 'pr' ), [
-                        'status' => 404,
-                    ] );
-				}
+						'status' => 404,
+					] );
+				},
 			],
 		] );
 	}

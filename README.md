@@ -33,37 +33,37 @@ Kunoichi\PluginRecommender::bulk_add( [
 
 ## Properties
 
-Here's a list of properties which you can set for each plugin.
+Here's a list of properties that you can set for each plugin.
 
-`slug`
+### slug
 
-**Required**. This should be same as WordPress.org.
+**Required**. This should be the same as WordPress.org.
 
-`source`
+### source
 
-Optional. Default is `wp` and if you provide some extra repository, set it's name. Of course, you need extra filters for it to work properly.
+Optional. The default is `wp`. If you provide some extra repository, set its name. Of course, you need extra filter `plugin_recommender_information` for it to work properly.
 
-`priority`
+### priority
 
-Optional. Recommended plugins ordered in descent. Over 90 means "required", over 50 measn "integrated" and others are simply recommended.
+Optional. Recommended plugins ordered in descent. Over 90 means "required", over 50 means "integrated" and others are simply recommended.
 
-`description`
+### description
 
-Optional. If this recommendation requires some text to recognize it's efficiency, just write.
+Optional. If this recommendation requires some explanation to recognize its efficiency, just write.
 
 ## API
 
 `Kunoichi\PluginRecommender::bulk_add( $settings )`
 
-Bulk load setttings. Pass array of settings.
+Bulk load settings. Pass array of settings.
 
 `Kunoichi\PluginRecommender::add( $setting )`
 
-Add single plugin to recommend list.
+Add a single plugin to recommend list.
 
 `Kunoichi\PluginRecommender::load( $json )`
 
-JSON file which represents `$settings` is also available.
+JSON file, which represents `$settings` is also available.
 But JSON is not translation-ready.
 
 `Kunoichi\PluginRecommender::load()`

@@ -6,10 +6,10 @@
   },
   {
     "slug": "contact-form-7",
-    "priority": 100
+    "priority": 50
   },
   {
     "slug": "woocommerce",
-    "priority": 50
+    "priority": 100
   }
 ]

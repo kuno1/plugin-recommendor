@@ -1,0 +1,11 @@
+tests/ export-ignore
+bin/ export-ignore
+.gitattributes export-ignore
+.github export-ignore
+.gitignore export-ignore
+.travis.yml export-ignore
+.wp-env.json
+docker-compose.yml export-ignore
+phpunit.xml.dist export-ignore
+phpcs.ruleset.xml export-ignore
+plugin-recommendor.php export-ignore

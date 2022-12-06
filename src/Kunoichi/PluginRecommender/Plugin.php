@@ -13,7 +13,7 @@ use Kunoichi\PluginRecommender\Pattern\PluginInformation;
  * @property-read string $name
  * @property-read string $source
  * @property-read string $slug
- * @property-read string $priority
+ * @property-read int    $priority
  * @property-read string $description
  */
 class Plugin {
@@ -50,35 +50,35 @@ class Plugin {
 		return sprintf( '%s/%s', $this->source, $this->slug );
 	}
 
-    /**
-     * Try to get information.
-     *
-     * @return array|\WP_Error
-     */
+	/**
+	 * Try to get information.
+	 *
+	 * @return array|\WP_Error
+	 */
 	public function retrieve_information() {
 		$class_name = sprintf( 'Kunoichi\PluginRecommender\Services\%s', ucfirst( $this->source ) );
 		if ( class_exists( $class_name ) ) {
 			/** @var PluginInformation $recommendor */
 			$recommendor = new $class_name( $this->slug );
-			$result = $recommendor->retrieve();
+			$result      = $recommendor->retrieve();
 		} else {
 			$result = new \WP_Error( 'no_information', __( 'Invalid namespace', 'pr' ), [
 				'status' => 400,
 			] );
 		}
-        return apply_filters( 'plugin_recommender_information', $result, $this );
-    }
+		return apply_filters( 'plugin_recommender_information', $result, $this );
+	}
 
 	/**
 	 * Detect if plugin is active.
 	 *
 	 * @return bool
 	 */
-    public function is_active() {
-    	foreach ( (array) get_option( 'active_plugins', [] ) as $files ) {
-    		list( $plugin_base ) = explode( '/', $files );
-    		if ( $this->slug === $plugin_base ) {
-    			return true;
+	public function is_active() {
+		foreach ( (array) get_option( 'active_plugins', [] ) as $files ) {
+			list( $plugin_base ) = explode( '/', $files );
+			if ( $this->slug === $plugin_base ) {
+				return true;
 			}
 		}
 		if ( ! is_multisite() ) {
@@ -98,7 +98,7 @@ class Plugin {
 	 * @return mixed
 	 */
 	public function __get( $name ) {
-		switch( $name ) {
+		switch ( $name ) {
 			case 'valid':
 				return $this->slug && $this->source;
 			case 'name':

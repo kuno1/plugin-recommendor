@@ -10,10 +10,16 @@ use Kunoichi\PluginRecommender\RecommendationsList;
  * Plugin recommender object.
  * @package PluginRecommender
  *
- * @property-read int      $count
- * @property-read Plugin[] $uninstalled
- * @property-read string   $url
- * @property-read string   $dir
+ * @property-read int      $count                     Number of plugins.
+ * @property-read Plugin[] $uninstalled               Uninstalled plugin list.
+ * @property-read string   $url                       URL of this repo.
+ * @property-read string   $dir                       Plugin directory.
+ * @method static string   get_title()                Get title.
+ * @method static string   get_menu_title()           Get menu title.
+ * @method static string   get_description()          Get description.
+ * @method static void     set_title( $string )       Set title.
+ * @method static void     set_menu_title( $string )  Set menu title.
+ * @method static void     set_description( $string ) Set description.
  */
 class PluginRecommender {
 
@@ -28,6 +34,21 @@ class PluginRecommender {
 	private $plugins = [];
 
 	/**
+	 * @var string Menu title.
+	 */
+	private $title = '';
+
+	/**
+	 * @var string Menu title
+	 */
+	private $menu_title = '';
+
+	/**
+	 * @var string Description
+	 */
+	private $description = '';
+
+	/**
 	 * Constructor.
 	 */
 	private function __construct() {
@@ -35,6 +56,8 @@ class PluginRecommender {
 		load_textdomain( 'pr', $this->dir . sprintf( '/languages/%s.mo', get_locale() ) );
 		// Add plugin Recommendation list.
 		RecommendationsList::get_instance();
+		$this->title      = __( 'Recommended Plugins', 'pr' );
+		$this->menu_title = __( 'Recommended Plugins', 'pr' );
 	}
 
 	/**
@@ -116,13 +139,35 @@ class PluginRecommender {
 	}
 
 	/**
+	 * Magic method.
+	 *
+	 * @param string $name      Method name.
+	 * @param array  $arguments Arguments.
+	 *
+	 * @return mixed|void
+	 */
+	public static function __callStatic( $name, $arguments = [] ) {
+		if ( ! preg_match( '/^(get|set)_(title|menu_title|description)$/u', $name, $matches ) ) {
+			return;
+		}
+		list( $all, $get_or_set, $property ) = $matches;
+		$instance = self::get_instance();
+		if ( 'set' === $get_or_set ) {
+			list( $value ) = $arguments;
+			$instance->{$property} = $value;
+		} else {
+			return $instance->{$property};
+		}
+	}
+
+	/**
 	 * Getter
 	 *
 	 * @param string $name
 	 * @return mixed
 	 */
 	public function __get( $name ) {
-		switch( $name ) {
+		switch ( $name ) {
 			case 'count':
 				return count( $this->plugins );
 			case 'uninstalled':

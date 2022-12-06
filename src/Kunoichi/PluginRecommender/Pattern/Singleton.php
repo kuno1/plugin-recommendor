@@ -13,28 +13,28 @@ use Kunoichi\PluginRecommender\Plugin;
  * @property-read PluginRecommender $recommender
  */
 abstract class Singleton {
-	
+
 	/**
 	 * Instance store.
 	 *
 	 * @var static[]
 	 */
 	private static $instances = [];
-	
+
 	/**
 	 * Hiddein constructor.
 	 */
 	final private function __construct() {
 		$this->init();
 	}
-	
+
 	/**
 	 * Constructor.
 	 */
 	protected function init() {
 		// Do something.
 	}
-	
+
 	/**
 	 * Instance getter.
 	 *
@@ -47,7 +47,7 @@ abstract class Singleton {
 		}
 		return self::$instances[ $class_name ];
 	}
-	
+
 	/**
 	 * Enqueue JS file.
 	 *
@@ -67,7 +67,7 @@ abstract class Singleton {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Enqueue CSS file.
 	 *
@@ -86,7 +86,7 @@ abstract class Singleton {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Get file information.
 	 *
@@ -97,7 +97,7 @@ abstract class Singleton {
 	 */
 	private function get_file_info( $rel_path, $version = null ) {
 		$rel_path = ltrim( $rel_path, '/' );
-		$path = $this->recommender->dir . '/' . $rel_path;
+		$path     = $this->recommender->dir . '/' . $rel_path;
 		if ( file_exists( $path ) ) {
 			$url = $this->recommender->url . '/' . $rel_path;
 			if ( is_null( $version ) ) {
@@ -108,7 +108,7 @@ abstract class Singleton {
 			return [ '', $version ];
 		}
 	}
-	
+
 	/**
 	 * Getter
 	 *

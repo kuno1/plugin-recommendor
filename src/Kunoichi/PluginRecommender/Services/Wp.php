@@ -19,7 +19,7 @@ class Wp extends PluginInformation {
 	 */
 	protected function get_api_info() {
 		global $wp_version;
-		$url = sprintf( 'https://api.wordpress.org/plugins/info/1.0/%s.json', $this->slug );
+		$url  = sprintf( 'https://api.wordpress.org/plugins/info/1.0/%s.json', $this->slug );
 		$info = wp_remote_get( $url, [
 			'timeout'    => 15,
 			'user-agent' => 'WordPress/' . $wp_version . '; ' . home_url( '/' ),
@@ -39,11 +39,11 @@ class Wp extends PluginInformation {
 			'description' => 'sections',
 			'url'         => 'homepage',
 			'src'         => sprintf( 'https://ps.w.org/%s/assets/icon-256x256.png', $this->slug ),
-				  ] as $key => $prop ) {
+		] as $key => $prop ) {
 			$value = isset( $body[ $prop ] ) ? $body[ $prop ] : '';
 			switch ( $key ) {
 				case 'description':
-					$result[ $key ] = strip_tags( $value[ 'description' ] );
+					$result[ $key ] = strip_tags( $value['description'] );
 					break;
 				case 'src':
 					$result[ $key ] = $prop;

@@ -118,7 +118,7 @@ class PluginList extends Component {
 		return (
 			plugins.length ? (
 				<div className="plugins-recommender-list">
-					<p className="description plugins-recommender-list__desc">{ sprintf( __( 'Recommended Plugins: %d', 'plugins-recommender' ), plugins.length ) }</p>
+					<p className="description plugins-recommender-list__desc">{ sprintf( __( 'Recommended Plugins: %d', 'pr' ), plugins.length ) }</p>
 					<div className="plugins-recommender-list__grid">
 						{ plugins.map( ( plugin ) => {
 							return <Plugin key={ plugin } slug={ plugin } />;
@@ -127,11 +127,11 @@ class PluginList extends Component {
 				</div>
 			) : (
 				<div className="notice notice-error plugins-recommender-list__error">
-					{ __( 'No plugin is recommended.', 'plugins-recommender' ) }
+					{ __( 'No plugin is recommended.', 'pr' ) }
 				</div>
 			)
 		);
 	}
 }
 
-render( <PluginList/>, document.getElementById( 'plugin-recommender-list' ) );
+render( <PluginList />, document.getElementById( 'plugin-recommender-list' ) );

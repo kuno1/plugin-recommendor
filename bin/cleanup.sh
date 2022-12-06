@@ -19,3 +19,4 @@ rm -rf .gitignore
 rm -rf phpunit.xml.dist
 rm -rf .eslintrc
 rm -rf webpack.config.js
+rm -rf plugin-recommender.php
