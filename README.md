@@ -41,11 +41,11 @@ Here's a list of properties that you can set for each plugin.
 
 ### source
 
-Optional. The default is `wp`. If you provide some extra repository, set its name. Of course, you need extra filter `plugin_recommender_information` for it to work properly.
+Optional. The default is `wp`. If you provide some extra repository, set its name. Of course, you need an extra filter `plugin_recommender_information` for it to work properly.
 
 ### priority
 
-Optional. Recommended plugins ordered in descent. Over 90 means "required", over 50 means "integrated" and others are simply recommended.
+Optional. Recommended plugins ordered in descent. Over 90 means "required", over 50 means "integrated", and others are simply recommended.
 
 ### description
 
@@ -61,7 +61,7 @@ Bulk load settings. Pass array of settings.
 
 Add a single plugin to recommend list.
 
-`Kunoichi\PluginRecommender::load( $json )`
+`Kunoichi\PluginRecommender::load( $json_file_path )`
 
 JSON file, which represents `$settings` is also available.
 But JSON is not translation-ready.
@@ -69,6 +69,12 @@ But JSON is not translation-ready.
 `Kunoichi\PluginRecommender::load()`
 
 Just put `recommendations.json` in your theme directory.
+
+`Kunoichi\PluginRecommender::set_title( $string )`  
+`Kunoichi\PluginRecommender::set_menu_title( $string )`  
+`Kunoichi\PluginRecommender::set_description( $string )`
+
+Change the page title, menu title, and description.
 
 ## License
 

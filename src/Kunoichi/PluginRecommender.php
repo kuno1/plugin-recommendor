@@ -151,9 +151,9 @@ class PluginRecommender {
 			return;
 		}
 		list( $all, $get_or_set, $property ) = $matches;
-		$instance = self::get_instance();
+		$instance                            = self::get_instance();
 		if ( 'set' === $get_or_set ) {
-			list( $value ) = $arguments;
+			list( $value )         = $arguments;
 			$instance->{$property} = $value;
 		} else {
 			return $instance->{$property};

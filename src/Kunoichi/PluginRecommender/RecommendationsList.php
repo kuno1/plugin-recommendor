@@ -26,7 +26,7 @@ class RecommendationsList extends Singleton {
 	 * Add admin menu.
 	 */
 	public function admin_menu() {
-		add_plugins_page( __( 'Recommendations', 'pr' ), __( 'Recommended Plugins', 'pr' ), 'install_plugins', 'plugins-recommender', [ $this, 'render_screen' ] );
+		add_plugins_page( PluginRecommender::get_title(), PluginRecommender::get_menu_title(), 'install_plugins', 'plugins-recommender', [ $this, 'render_screen' ] );
 	}
 
 	/**
